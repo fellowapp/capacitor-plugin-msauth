@@ -75,6 +75,12 @@
 				50ADFF89201F53D600D50D53 /* Products */,
 				8C8E7744173064A9F6D438E3 /* Pods */,
 				A797B9EFA3DCEFEA1FBB66A9 /* Frameworks */,
+				F4BF2915BF04AC1DD6601684 /* xcuserdata */,
+				F4BF2AC7171EE68DD85EBAD2 /* macdja38.xcuserdatad */,
+				F4BF28B9CE5EA20504D00CD8 /* swiftpm */,
+				F4BF21414D5E8AA2E1DA6B3D /* Headers */,
+				F4BF27ABB0BD2969283B9D14 /* Local Podspecs */,
+				F4BF2A6C9267AA139F5F87F2 /* Target Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +132,86 @@
 				F6753A823D3815DB436415E3 /* Pods_PluginTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4BF21414D5E8AA2E1DA6B3D /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Headers;
+			path = Pods/Headers;
+			sourceTree = "<group>";
+		};
+		F4BF2374749AAC88F04190F7 /* xcschemes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = xcschemes;
+			sourceTree = "<group>";
+		};
+		F4BF25CF5D1130EF0A3B37FA /* configuration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = configuration;
+			sourceTree = "<group>";
+		};
+		F4BF27ABB0BD2969283B9D14 /* Local Podspecs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Local Podspecs";
+			path = "Pods/Local Podspecs";
+			sourceTree = "<group>";
+		};
+		F4BF28B9CE5EA20504D00CD8 /* swiftpm */ = {
+			isa = PBXGroup;
+			children = (
+				F4BF25CF5D1130EF0A3B37FA /* configuration */,
+			);
+			name = swiftpm;
+			path = Plugin.xcworkspace/xcshareddata/swiftpm;
+			sourceTree = "<group>";
+		};
+		F4BF2915BF04AC1DD6601684 /* xcuserdata */ = {
+			isa = PBXGroup;
+			children = (
+				F4BF2B3882D09D6837CE4EAE /* macdja38.xcuserdatad */,
+			);
+			name = xcuserdata;
+			path = Plugin.xcworkspace/xcuserdata;
+			sourceTree = "<group>";
+		};
+		F4BF2A6C9267AA139F5F87F2 /* Target Support Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Target Support Files";
+			path = "Pods/Target Support Files";
+			sourceTree = "<group>";
+		};
+		F4BF2AC7171EE68DD85EBAD2 /* macdja38.xcuserdatad */ = {
+			isa = PBXGroup;
+			children = (
+				F4BF2D3C3719A38BBFFACDD4 /* xcschemes */,
+			);
+			name = macdja38.xcuserdatad;
+			path = Plugin.xcodeproj/xcuserdata/macdja38.xcuserdatad;
+			sourceTree = "<group>";
+		};
+		F4BF2B3882D09D6837CE4EAE /* macdja38.xcuserdatad */ = {
+			isa = PBXGroup;
+			children = (
+				F4BF2374749AAC88F04190F7 /* xcschemes */,
+			);
+			path = macdja38.xcuserdatad;
+			sourceTree = "<group>";
+		};
+		F4BF2D3C3719A38BBFFACDD4 /* xcschemes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = xcschemes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,7 +571,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getcapacitor.Plugin;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-        SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

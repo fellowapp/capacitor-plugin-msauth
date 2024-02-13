@@ -121,6 +121,26 @@ public class MsAuthPlugin: CAPPlugin {
         }
     }
 
+    @objc func getCurrentAccount(_ call: CAPPluginCall) {
+        guard let context = createContextFromPluginCall(call) else {
+            call.reject("Unable to create context, check logs")
+            return
+        }
+
+        let completion: AccountCompletion = { account in
+            guard let result = account else {
+                call.resolve([:])
+                return
+            }
+            call.resolve([
+                "username": result.username,
+                "identifier": result.identifier,
+            ])
+        }
+
+        let account = loadCurrentAccount(applicationContext: context, completion: completion)
+    }
+
     private func createContextFromPluginCall(_ call: CAPPluginCall) -> MSALPublicClientApplication? {
         guard let clientId = call.getString("clientId") else {
             call.reject("Invalid client ID specified.")
