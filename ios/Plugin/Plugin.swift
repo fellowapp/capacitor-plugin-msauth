@@ -183,6 +183,7 @@ public class MsAuthPlugin: CAPPlugin {
 
             let msalConfiguration = MSALPublicClientApplicationConfig(clientId: clientId, redirectUri: nil, authority: authority)
             msalConfiguration.knownAuthorities = [authority]
+            msalConfiguration.clientApplicationCapabilities = ["ProtApp"];
             return try MSALPublicClientApplication(configuration: msalConfiguration)
         } catch {
             print(error)
