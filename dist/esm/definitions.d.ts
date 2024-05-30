@@ -21,7 +21,7 @@ export interface MsAuthPlugin {
     logout(options: LogoutOptions): Promise<void>;
     logoutAll(options: LogoutOptions): Promise<void>;
     getCurrentAccount(options: BaseOptions): Promise<{
-        "username": string;
-        "identifier": string;
+        username?: string;
+        identifier?: string;
     }>;
 }

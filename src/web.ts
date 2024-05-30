@@ -49,8 +49,8 @@ export class MsAuth extends WebPlugin implements MsAuthPlugin {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getCurrentAccount(_options: BaseOptions): Promise<{ username: string, identifier: string }> {
-    throw new Error("Not implemented on web");
+  getCurrentAccount(_options: BaseOptions): Promise<{ username: string; identifier: string }> {
+    throw new Error('Not implemented on web');
   }
 
   private createContext(options: WebBaseOptions) {

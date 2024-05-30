@@ -75,7 +75,7 @@ public class MsAuthPlugin: CAPPlugin {
             }
         }
     }
-    
+
     @objc func logoutAll(_ call: CAPPluginCall) {
         guard let context = createContextFromPluginCall(call) else {
             call.reject("Unable to create context, check logs")
@@ -90,23 +90,23 @@ public class MsAuthPlugin: CAPPlugin {
         do {
             let accounts = try context.allAccounts()
             var completed = 0
-            
+
             accounts.forEach {
                 let wvParameters = MSALWebviewParameters(authPresentationViewController: bridgeViewController)
                 let signoutParameters = MSALSignoutParameters(webviewParameters: wvParameters)
                 signoutParameters.signoutFromBrowser = false // set this to true if you also want to signout from browser or webview
-                
+
                 context.signout(with: $0, signoutParameters: signoutParameters, completionBlock: {(_, error) in
                     completed += 1
 
                     if let error = error {
                         print("Unable to logout: \(error)")
-                        
+
                         call.reject("Unable to logout")
-                        
+
                         return
                     }
-                    
+
                     if completed == accounts.count {
                         call.resolve()
                     }
@@ -207,7 +207,7 @@ public class MsAuthPlugin: CAPPlugin {
                         for tenant in tenants {
                             if let tenantId = tenant.tenantId {
                                 // Find first account where authority url matches tenant id
-                                if authorityUrl.absoluteString.contains(tenantId) { 
+                                if authorityUrl.absoluteString.contains(tenantId) {
                                     completion(account)
                                     return
                                 }
@@ -222,7 +222,6 @@ public class MsAuthPlugin: CAPPlugin {
         } catch {
             print("Unable to access cached accounts list")
         }
-
 
         applicationContext.getCurrentAccount(with: msalParameters, completionBlock: { (currentAccount, _, error) in
             if let error = error {

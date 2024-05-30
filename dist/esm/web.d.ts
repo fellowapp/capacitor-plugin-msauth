@@ -17,8 +17,8 @@ export declare class MsAuth extends WebPlugin implements MsAuthPlugin {
     logout(options: WebLogoutOptions): Promise<void>;
     logoutAll(options: WebLogoutOptions): Promise<void>;
     getCurrentAccount(_options: BaseOptions): Promise<{
-        "username": string;
-        "identifier": string;
+        username: string;
+        identifier: string;
     }>;
     private createContext;
     private getCurrentUrl;

@@ -25,7 +25,7 @@ export class MsAuth extends WebPlugin {
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getCurrentAccount(_options) {
-        throw new Error("Not implemented on web");
+        throw new Error('Not implemented on web');
     }
     createContext(options) {
         var _a, _b, _c;
