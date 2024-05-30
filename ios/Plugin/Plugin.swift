@@ -150,6 +150,7 @@ public class MsAuthPlugin: CAPPlugin {
         let tenant = call.getString("tenant")
         let authorityURL = call.getString("authorityUrl")
         let authorityType = call.getString("authorityType") ?? "AAD"
+        let keychainGroup = call.getString("keychainGroup")
 
         if authorityType != "AAD" && authorityType != "B2C" {
             call.reject("authorityType must be one of 'AAD' or 'B2C'")
@@ -157,9 +158,14 @@ public class MsAuthPlugin: CAPPlugin {
         }
 
         guard let enumAuthorityType = AuthorityType(rawValue: authorityType.lowercased()),
-              let context = createContext(
-                clientId: clientId, domainHint: domainHint, tenant: tenant, authorityType: enumAuthorityType, customAuthorityURL: authorityURL
-              ) else {
+            let context = createContext(
+                clientId: clientId,
+                domainHint: domainHint,
+                tenant: tenant,
+                authorityType: enumAuthorityType,
+                customAuthorityURL: authorityURL,
+                keychainGroup: keychainGroup,
+            ) else {
             call.reject("Unable to create context, check logs")
             return nil
         }
@@ -167,7 +173,7 @@ public class MsAuthPlugin: CAPPlugin {
         return context
     }
 
-    private func createContext(clientId: String, domainHint: String?, tenant: String?, authorityType: AuthorityType, customAuthorityURL: String?) -> MSALPublicClientApplication? {
+    private func createContext(clientId: String, domainHint: String?, tenant: String?, authorityType: AuthorityType, customAuthorityURL: String?, keychainGroup: String?) -> MSALPublicClientApplication? {
         guard let authorityURL = URL(string: customAuthorityURL ?? "https://login.microsoftonline.com/\(tenant ?? "common")") else {
             print("Invalid authorityUrl or tenant specified")
             return nil
@@ -183,6 +189,10 @@ public class MsAuthPlugin: CAPPlugin {
 
             let msalConfiguration = MSALPublicClientApplicationConfig(clientId: clientId, redirectUri: nil, authority: authority)
             msalConfiguration.knownAuthorities = [authority]
+            msalConfiguration.clientApplicationCapabilities = ["ProtApp"]
+            if let keychainGroupNonNil = keychainGroup {
+                msalConfiguration.cacheConfig.keychainSharingGroup = keychainGroupNonNil
+            }
             return try MSALPublicClientApplication(configuration: msalConfiguration)
         } catch {
             print(error)
