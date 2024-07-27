@@ -164,7 +164,7 @@ public class MsAuthPlugin: CAPPlugin {
                 tenant: tenant,
                 authorityType: enumAuthorityType,
                 customAuthorityURL: authorityURL,
-                keychainGroup: keychainGroup,
+                keychainGroup: keychainGroup
             ) else {
             call.reject("Unable to create context, check logs")
             return nil
