@@ -3,67 +3,20 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var core = require('@capacitor/core');
-var msalBrowser = require('@azure/msal-browser');
 
 class MsAuth extends core.WebPlugin {
-    async login(options) {
-        const context = this.createContext(options);
-        try {
-            return await this.acquireTokenSilently(context, options.scopes).catch(() => this.acquireTokenInteractively(context, options.scopes));
-        }
-        catch (error) {
-            console.error('MSAL: Error occurred while logging in', error);
-            throw error;
-        }
+    async login(_options) {
+        return Promise.reject(new Error('Not implemented on web.'));
     }
-    logout(options) {
-        const context = this.createContext(options);
-        if (!context.getAllAccounts()[0]) {
-            return Promise.reject(new Error('Nothing to sign out from.'));
-        }
-        else {
-            return context.logoutPopup();
-        }
+    logout(_options) {
+        return Promise.reject(new Error('Not implemented on web.'));
     }
-    logoutAll(options) {
-        return this.logout(options);
+    logoutAll(_options) {
+        return Promise.reject(new Error('Not implemented on web.'));
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getCurrentAccount(_options) {
-        throw new Error('Not implemented on web');
-    }
-    createContext(options) {
-        var _a, _b, _c;
-        const config = {
-            auth: {
-                clientId: options.clientId,
-                domainHint: options.domainHint,
-                authority: (_a = options.authorityUrl) !== null && _a !== void 0 ? _a : `https://login.microsoftonline.com/${(_b = options.tenant) !== null && _b !== void 0 ? _b : 'common'}`,
-                knownAuthorities: options.knownAuthorities,
-                redirectUri: (_c = options.redirectUri) !== null && _c !== void 0 ? _c : this.getCurrentUrl(),
-            },
-            cache: {
-                cacheLocation: 'localStorage',
-            },
-        };
-        return new msalBrowser.PublicClientApplication(config);
-    }
-    getCurrentUrl() {
-        return window.location.href.split(/[?#]/)[0];
-    }
-    async acquireTokenInteractively(context, scopes) {
-        const { accessToken, idToken } = await context.acquireTokenPopup({
-            scopes,
-            prompt: 'select_account',
-        });
-        return { accessToken, idToken, scopes };
-    }
-    async acquireTokenSilently(context, scopes) {
-        const { accessToken, idToken } = await context.acquireTokenSilent({
-            scopes,
-            account: context.getAllAccounts()[0],
-        });
-        return { accessToken, idToken, scopes };
+        return Promise.reject(new Error('Not implemented on web.'));
     }
 }
 

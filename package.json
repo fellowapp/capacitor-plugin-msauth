@@ -75,9 +75,7 @@
   },
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",
-  "dependencies": {
-    "@azure/msal-browser": "^2.32.2"
-  },
+  "dependencies": {},
   "eslintConfig": {
     "extends": "@ionic/eslint-config/recommended"
   },
